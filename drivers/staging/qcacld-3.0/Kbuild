@@ -13,6 +13,10 @@ ifeq ($(KERNEL_BUILD), y)
 	WLAN_ROOT := drivers/staging/qcacld-3.0
 	WLAN_COMMON_ROOT := ../qca-wifi-host-cmn
 	WLAN_COMMON_INC := $(WLAN_ROOT)/$(WLAN_COMMON_ROOT)
+
+	TARGET_BUILD_VARIANT := user
+	CONFIG_CFG_NUM_TX_RX_HISTOGRAM := 16
+	CONFIG_CFG_NUM_RX_IND_RECORD := 1024
 endif
 
 WLAN_COMMON_ROOT ?= ../qca-wifi-host-cmn
