@@ -25,9 +25,6 @@ vmlinux
 System.map
 .config
 "
-EXT_MODULES="
-private/msm-google-modules/wlan/qcacld-3.0
-private/msm-google-modules/touch/fts
-"
+EXT_MODULES=""
 IN_KERNEL_MODULES=1
 STOP_SHIP_TRACEPRINTK=1
