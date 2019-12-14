@@ -59,6 +59,13 @@ static const struct of_device_id dsi_display_dt_match[] = {
 	{}
 };
 
+static struct dsi_display *main_display;
+
+struct dsi_display *dsi_display_get_main_display(void)
+{
+	return main_display;
+}
+
 static inline bool is_lp_mode(int power_mode)
 {
 	return power_mode == SDE_MODE_DPMS_LP1 ||
@@ -5274,6 +5281,9 @@ int dsi_display_dev_probe(struct platform_device *pdev)
 	display->name = name;
 	display->pdev = pdev;
 	display->boot_disp = boot_disp;
+
+	main_display = display;
+	pr_notice("%s: Panel Name = %s\n", __func__, display->name);
 
 	dsi_display_parse_cmdline_topology(display, index);
 
