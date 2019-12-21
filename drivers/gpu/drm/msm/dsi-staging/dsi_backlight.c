@@ -26,6 +26,9 @@
 
 #include "dsi_display.h"
 #include "dsi_panel.h"
+#ifdef CONFIG_DRM_SDE_EXPO
+#include "sde_expo_dim_layer.h"
+#endif
 
 #define BL_NODE_NAME_SIZE 32
 #define BL_BRIGHTNESS_BUF_SIZE 2
@@ -401,7 +404,11 @@ static u32 dsi_backlight_calculate(struct dsi_backlight_config *bl,
 			brightness, bl->bl_scale, bl->bl_scale_ad, bl_lvl,
 			panel->hbm_mode);
 
+#ifdef CONFIG_DRM_SDE_EXPO
+	return expo_calc_backlight(bl_lvl);
+#else
 	return bl_lvl;
+#endif
 }
 
 static int dsi_backlight_update_status(struct backlight_device *bd)
